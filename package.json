@@ -65,8 +65,9 @@
   },
   "build": {
     "appId": "com.atmosvision.pro",
-    "productName": "AtmosVision Pro",
-    "copyright": "Copyright © 2024 AtmosVision Contributors",
+    "productName": "AtmosVision-Pro",
+    "copyright": "Copyright © 2024 Jonathan Rannabargar",
+    "publish": null,
     "directories": {
       "buildResources": "public",
       "output": "release"
