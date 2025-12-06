@@ -1,0 +1,111 @@
+{
+  "name": "atmosvision-pro",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Advanced open-source meteorological forecasting platform",
+  "author": {
+    "name": "Jonathan Rannabargar",
+    "email": "jonathanrannabargar@gmail.com"
+  },
+  "homepage": "https://github.com/JongoDB/atmos-vision",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JongoDB/atmos-vision.git"
+  },
+  "bugs": {
+    "url": "https://github.com/JongoDB/atmos-vision/issues"
+  },
+  "license": "MIT",
+  "main": "electron/main.cjs",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "electron": "wait-on http://localhost:4000 && cross-env NODE_ENV=development electron .",
+    "electron:dev": "concurrently \"npm run dev\" \"npm run electron\"",
+    "electron:build": "npm run build && electron-builder",
+    "electron:build:win": "npm run build && electron-builder --win",
+    "electron:build:mac": "npm run build && electron-builder --mac",
+    "electron:build:linux": "npm run build && electron-builder --linux"
+  },
+  "dependencies": {
+    "axios": "^1.6.2",
+    "clsx": "^2.0.0",
+    "date-fns": "^3.0.6",
+    "leaflet": "^1.9.4",
+    "lucide-react": "^0.294.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-leaflet": "^4.2.1",
+    "recharts": "^2.10.3",
+    "zustand": "^4.4.7"
+  },
+  "devDependencies": {
+    "@types/leaflet": "^1.9.8",
+    "@types/react": "^18.2.43",
+    "@types/react-dom": "^18.2.17",
+    "@typescript-eslint/eslint-plugin": "^6.14.0",
+    "@typescript-eslint/parser": "^6.14.0",
+    "@vitejs/plugin-react": "^4.2.1",
+    "autoprefixer": "^10.4.16",
+    "concurrently": "^9.2.1",
+    "cross-env": "^10.1.0",
+    "electron": "^39.2.6",
+    "electron-builder": "^26.0.12",
+    "eslint": "^8.55.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.5",
+    "postcss": "^8.4.32",
+    "tailwindcss": "^3.3.6",
+    "typescript": "^5.2.2",
+    "vite": "^5.0.8",
+    "wait-on": "^9.0.3"
+  },
+  "build": {
+    "appId": "com.atmosvision.pro",
+    "productName": "AtmosVision Pro",
+    "copyright": "Copyright © 2024 AtmosVision Contributors",
+    "directories": {
+      "buildResources": "public",
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "electron/**/*",
+      "package.json"
+    ],
+    "extraMetadata": {
+      "main": "electron/main.cjs"
+    },
+    "win": {
+      "target": [
+        "nsis",
+        "portable"
+      ],
+      "artifactName": "${productName}-${version}-${arch}.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    },
+    "mac": {
+      "target": [
+        "dmg"
+      ],
+      "category": "public.app-category.weather",
+      "artifactName": "${productName}-${version}-${arch}.${ext}"
+    },
+    "linux": {
+      "target": [
+        "deb",
+        "rpm"
+      ],
+      "category": "Science",
+      "artifactName": "${productName}-${version}-${arch}.${ext}"
+    }
+  }
+}
